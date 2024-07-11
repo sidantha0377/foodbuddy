@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Food {
   final String name;
   final String category;
@@ -10,13 +8,14 @@ class Food {
   final String imgeUrl;
   bool isFavourit;
 
-  Food{
+  Food({
     required this.name,
     required this.category,
     required this.price,
     required this.disprice,
     required this.description,
-    
-
-  };
+    required this.amount,
+    required this.imgeUrl,
+    this.isFavourit = false,
+  });
 }
