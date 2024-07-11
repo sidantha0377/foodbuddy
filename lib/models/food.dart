@@ -8,6 +8,7 @@ class Food {
   final String imgeUrl;
   bool isFavourit;
 
+  //construcor
   Food({
     required this.name,
     required this.category,
