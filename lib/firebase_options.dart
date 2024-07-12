@@ -47,28 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCrfPt5Eemma7Qm5aQWR4CoiIJEmvyBjQo',
-    appId: '1:890903654390:web:bc9756d03a99cc40f821d7',
-    messagingSenderId: '890903654390',
-    projectId: 'foodbuddy-bce8a',
-    authDomain: 'foodbuddy-bce8a.firebaseapp.com',
-    storageBucket: 'foodbuddy-bce8a.appspot.com',
+    apiKey: 'AIzaSyBZyT-POXu6BIUE75gCB4I_eaJEwq169FE',
+    appId: '1:731596072175:web:c9d4668f0a24805145271a',
+    messagingSenderId: '731596072175',
+    projectId: 'foodbuddy-466b4',
+    authDomain: 'foodbuddy-466b4.firebaseapp.com',
+    storageBucket: 'foodbuddy-466b4.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDzX1gzMA7mh_vooBhJoPpH8R2gYEPZmCc',
-    appId: '1:890903654390:android:b4231f2a84635856f821d7',
-    messagingSenderId: '890903654390',
-    projectId: 'foodbuddy-bce8a',
-    storageBucket: 'foodbuddy-bce8a.appspot.com',
+    apiKey: 'AIzaSyDEfzx-AMNIe6bkhlWyZSg9SfnUu0QVMC4',
+    appId: '1:731596072175:android:8f236e7754e58c7e45271a',
+    messagingSenderId: '731596072175',
+    projectId: 'foodbuddy-466b4',
+    storageBucket: 'foodbuddy-466b4.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDnP1r52378rkK8aU7LYvOgiriqmEP9CJI',
-    appId: '1:890903654390:ios:fbcc560ee10bcee0f821d7',
-    messagingSenderId: '890903654390',
-    projectId: 'foodbuddy-bce8a',
-    storageBucket: 'foodbuddy-bce8a.appspot.com',
+    apiKey: 'AIzaSyCyrFFFu37AIuwVp3jHbfu4rSjqBm96cac',
+    appId: '1:731596072175:ios:8cf40c2f3b847ac845271a',
+    messagingSenderId: '731596072175',
+    projectId: 'foodbuddy-466b4',
+    storageBucket: 'foodbuddy-466b4.appspot.com',
     iosBundleId: 'com.example.foodbuddy',
   );
+
 }
