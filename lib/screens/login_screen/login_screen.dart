@@ -1,15 +1,40 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:foodbuddy/screens/signup_screan/signup_screan.dart';
+import 'package:foodbuddy/screens/home_screen/home_screen.dart';
+//import 'package:foodbuddy/screens/signup_screan/signup_screan.dart';
+import 'package:foodbuddy/screens/signup_screan/signup_screan2.dart';
+import 'package:foodbuddy/services/firebase_auth_methods.dart';
 import 'package:foodbuddy/utils/util_fun.dart';
 import 'package:foodbuddy/widgets/coustom_elevated_button.dart';
 import 'package:foodbuddy/widgets/coustom_text_field.dart';
+import 'package:foodbuddy/widgets/coustom_toast.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _email = TextEditingController();
+
   final _password = TextEditingController();
+
+  bool show = true;
+
+  void logInUser() async {
+    bool login = await FirebaseAuthMethods(FirebaseAuth.instance)
+        .logInWithEmail(
+            email: _email.text, password: _password.text, context: context);
+    if (login) {
+      CoustomToast("Sucsessfull Log in!");
+      UtilFuntions.navigateTo(context, const HomeScreen());
+    } else {
+      CoustomToast("*incorrect email address or password");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +89,48 @@ class LoginScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 20,
                               ),
-                              CoustomTextField(
-                                hight: 50,
-                                labelText: 'Password',
-                                controller: _password,
-                                isObserve: true,
+                              SizedBox(
+                                height: 50,
+                                child: TextField(
+                                  obscureText: show,
+                                  controller: _password,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xffa67932)),
+                                  decoration: InputDecoration(
+                                      suffixIcon: IconButton(
+                                        color: const Color(0xffa67932),
+                                        icon: Icon(show
+                                            ? Icons.visibility
+                                            : Icons.visibility_off),
+                                        onPressed: () {
+                                          setState(
+                                            () {
+                                              show = !show;
+                                            },
+                                          );
+                                        },
+                                      ),
+                                      //fillColor: Color(0xffa67932),
+                                      hintText: "Password",
+                                      hintStyle: const TextStyle(
+                                        color:
+                                            Color.fromARGB(155, 166, 122, 50),
+                                      ),
+                                      labelStyle: const TextStyle(
+                                          color: Color(0xffa67932)),
+                                      labelText: "Password",
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: const BorderSide(
+                                              color: Color(0xffa67932))),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: const BorderSide(
+                                              color: Color(0xffa67932)))),
+                                ),
                               ),
                               const SizedBox(
                                 height: 20,
@@ -76,7 +138,7 @@ class LoginScreen extends StatelessWidget {
                               CoustomElevatedButton(
                                 hight: 50,
                                 text: "Log in",
-                                ontap: () {},
+                                ontap: logInUser,
                               ),
                               const SizedBox(
                                 height: 10,
@@ -84,7 +146,7 @@ class LoginScreen extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   UtilFuntions.navigateTo(
-                                      context, SignUpScrean());
+                                      context, SignUpScreenNew());
                                 },
                                 child: const Text(
                                     "Don't have an account? Sign Up",

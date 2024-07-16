@@ -15,7 +15,7 @@ class CoustomElevatedButton extends StatelessWidget {
     return SizedBox(
         height: hight,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: ontap,
           style: ButtonStyle(
               //padding: MaterialStateProperty.all<EdgeInsetsGeometry?>(EdgeInsets.symmetric(vertical: 55)),
               backgroundColor:

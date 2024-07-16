@@ -1,31 +1,44 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodbuddy/screens/login_screen/login_screen.dart';
+import 'package:foodbuddy/services/firebase_add_user.dart';
 import 'package:foodbuddy/services/firebase_auth_methods.dart';
 import 'package:foodbuddy/utils/util_fun.dart';
 import 'package:foodbuddy/widgets/coustom_elevated_button.dart';
 import 'package:foodbuddy/widgets/coustom_text_field.dart';
+import 'package:foodbuddy/widgets/coustom_toast.dart';
 
-class SignUpScrean extends StatelessWidget {
-  SignUpScrean({super.key});
+class SignUpScreenNew extends StatefulWidget {
+  const SignUpScreenNew({super.key});
 
-  final _fname = TextEditingController();
-  final _lname = TextEditingController();
-  final _email = TextEditingController();
-  final _uname = TextEditingController();
-  final _password = TextEditingController();
-  final _repassword = TextEditingController();
+  @override
+  State<SignUpScreenNew> createState() => _SignUpScreenNewState();
+}
 
-  get context => null;
+class _SignUpScreenNewState extends State<SignUpScreenNew> {
+  final TextEditingController _fname = TextEditingController();
+  final TextEditingController _lname = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _uname = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _repassword = TextEditingController();
 
-  //get context => null;
+  bool show = true;
 
   void signUpUser() async {
-    //await FirebaseAuthMethods().signUpWithEmail(
-    // email: _email.text,
-    // password: _password.text,
-    //);
+    bool valid;
+    valid = await FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
+      email: _email.text,
+      password: _password.text,
+      context: context,
+    );
+    if (valid) {
+      AddUser(_fname.text, _lname.text, _email.text, _uname.text)
+          .addUserDetail();
+    } else {
+      CoustomToast("*incorrect email address or password");
+    }
   }
 
   @override
@@ -104,18 +117,55 @@ class SignUpScrean extends StatelessWidget {
                               const SizedBox(
                                 height: 10,
                               ),
-                              CoustomTextField(
-                                hight: 50,
-                                labelText: 'Password',
-                                controller: _password,
-                                isObserve: true,
+                              SizedBox(
+                                height: 50,
+                                child: TextField(
+                                  obscureText: show,
+                                  controller: _password,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xffa67932)),
+                                  decoration: InputDecoration(
+                                      suffixIcon: IconButton(
+                                        color: const Color(0xffa67932),
+                                        icon: Icon(show
+                                            ? Icons.visibility
+                                            : Icons.visibility_off),
+                                        onPressed: () {
+                                          setState(
+                                            () {
+                                              show = !show;
+                                            },
+                                          );
+                                        },
+                                      ),
+                                      //fillColor: Color(0xffa67932),
+                                      hintText: "Password",
+                                      hintStyle: const TextStyle(
+                                        color:
+                                            Color.fromARGB(155, 166, 122, 50),
+                                      ),
+                                      labelStyle: const TextStyle(
+                                          color: Color(0xffa67932)),
+                                      labelText: "Password",
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: const BorderSide(
+                                              color: Color(0xffa67932))),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: const BorderSide(
+                                              color: Color(0xffa67932)))),
+                                ),
                               ),
                               const SizedBox(height: 10),
                               CoustomTextField(
                                 hight: 50,
                                 labelText: 'Re-enter password',
                                 controller: _repassword,
-                                isObserve: true,
+                                isObserve: show,
                               ),
                               const SizedBox(
                                 height: 20,
@@ -123,7 +173,7 @@ class SignUpScrean extends StatelessWidget {
                               CoustomElevatedButton(
                                 hight: 50,
                                 text: "Sign up",
-                                ontap: () {},
+                                ontap: signUpUser,
                               ),
                               const SizedBox(
                                 height: 10,

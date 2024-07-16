@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodbuddy/screens/login_screen/login_screen.dart';
-import 'package:foodbuddy/screens/signup_screan/signup_screan.dart';
+import 'package:foodbuddy/screens/signup_screan/signup_screan2.dart';
 import 'package:foodbuddy/utils/util_fun.dart';
 
 class MainScreen extends StatelessWidget {
@@ -47,7 +47,7 @@ class MainScreen extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  UtilFuntions.navigateTo(context, SignUpScrean());
+                  UtilFuntions.navigateTo(context, SignUpScreenNew());
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color?>(

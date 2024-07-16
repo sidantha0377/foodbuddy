@@ -22,10 +22,16 @@ class CoustomTextField extends StatelessWidget {
       height: hight,
       child: TextField(
         obscureText: isObserve,
+        //style: const TextStyle(color: Color(0xffa67932)),
         controller: controller,
-        //style: TextStyle(color: Color(0xffa67932)),
+        style: const TextStyle(
+            color: Color(0xffa67932), fontWeight: FontWeight.bold),
         decoration: InputDecoration(
             labelText: labelText,
+            hintText: labelText,
+            hintStyle:
+                const TextStyle(color: Color.fromARGB(155, 166, 122, 50)),
+            labelStyle: const TextStyle(color: Color(0xffa67932)),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(color: Color(0xffa67932))),
