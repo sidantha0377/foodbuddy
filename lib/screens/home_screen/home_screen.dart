@@ -11,20 +11,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      //backgroundColor: const Color(0xfffed178),
+      backgroundColor: const Color(0xfffed178),
       body: SingleChildScrollView(
         reverse: true,
         child: DecoratedBox(
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("images/AppBack.png"),
-                    fit: BoxFit.cover,
-                    opacity: 0.37)),
+                //image: DecorationImage(
+                // image: AssetImage("images/AppBack.png"),
+                // fit: BoxFit.cover,
+                /* opacity: 0.37)*/),
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text("Log in!!!!",
                       style: TextStyle(
